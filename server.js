@@ -21,15 +21,23 @@ var usuario = function (id, nom, pass) {
 		return "id: "+this.idus+" nomusuario: "+this.nusuario+" pusuario: "+this.pusuario;	
 	};
 };
+var grantAccess = function(req, res, next){
+	
+};
+
+
 
 app.configure(function() {
+	//app.use(grantAccess);
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
+
 });
 
 
 var mostrarUS = function(req, res){
+	res.header('Access-Control-Allow-Origin', "*");
 	var arreglo = new Array();
 //	console.log("pedido "+JSON.stringify(res));
 	cliente.query("select * from usuarios;", function (err,results,fields) {
@@ -42,12 +50,12 @@ var mostrarUS = function(req, res){
 				arreglo.push(us);
 			};
 			console.log(arreglo.valueOf());
-			res.send(arreglo);
+			res.json(arreglo);
 		}
 	});
 };
 
-app.get("/login.html", mostrarUS);
+app.get("/greetings", mostrarUS);
 
 server.listen(2011, function () {
 	console.log("Node server running on http://localhost:2011");
