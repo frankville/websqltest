@@ -31,20 +31,26 @@ var verificarUsuario = function(us,pass,callback){
 
 
 	var sesion = new datosLogin(us,pass);
-	alert("json "+JSON.stringify(sesion));
-
+/*
 	$.getJSON("http://localhost:2011/greetings", function(data) {
 		alert("datos del server "+JSON.stringify(data));
 	});
-/*
+*/
 	$.ajax ({
 		type: "GET",
-		url: "http://localhost:2011/greetings",
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		//data: JSON.stringify(sesion),
+		url: "http://localhost:2011/login",
+		//contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		data: {
+			jsonObj: JSON.stringify(sesion)
+		},
 		success: function (data, status, jqXHR) {
-			alert("la respuesta del server ");
+			//var respjson = JSON.parse(data);
+			if(data.status == "ok"){
+				darRespuesta(1);
+			}else{
+				darRespuesta(0);
+			};
 		},
 		error: function(xhrequest, ErrorText, thrownError) {
             alert("eror:  " + thrownError + " : " + ErrorText);
@@ -52,7 +58,7 @@ var verificarUsuario = function(us,pass,callback){
 
 	});
 
-	
+	/*
 	db.transaction(function(t){
 		t.executeSql("SELECT * FROM usuarios where id = ? and pass= ?;",
 			[us,pass],

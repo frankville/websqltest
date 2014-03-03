@@ -3,6 +3,8 @@ var app = express();
 var http = require("http");
 var server = http.createServer(app);
 var mysql = require("mysql");
+var url = require("url");
+var queryString = require("querystring");
 
 var cliente = mysql.createConnection({
 	user :"queryuser",
@@ -22,40 +24,44 @@ var usuario = function (id, nom, pass) {
 	};
 };
 var grantAccess = function(req, res, next){
-	
+	res.header("Access-Control-Allow-Origin", "*");
+	next();
 };
 
 
 
 app.configure(function() {
-	//app.use(grantAccess);
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
+	app.use(grantAccess);
 	app.use(app.router);
 
 });
 
 
-var mostrarUS = function(req, res){
-	res.header('Access-Control-Allow-Origin', "*");
-	var arreglo = new Array();
-//	console.log("pedido "+JSON.stringify(res));
-	cliente.query("select * from usuarios;", function (err,results,fields) {
+var validarUS = function(req, res){
+	var urlParsed = url.parse(req.url);
+	var query = queryString.parse(urlParsed.query);
+
+	var qjson = JSON.parse(query.jsonObj);
+
+	cliente.query("select * from usuarios where nusuario = ? and pusuario = ?;",[qjson.nusuario, qjson.pusuario] , function (err,results,fields) {
 		if(err){
-			res.send("Error en query! "+err.message);
+			console.log("Error en query! "+err.message);
 		}else{
-			console.log("buena!!!");
-			for(var i=0; i < results.length; i++){
-				var us = new usuario(results[i].idusuario,results[i].nusuario, results[i].pusuario);
-				arreglo.push(us);
-			};
-			console.log(arreglo.valueOf());
-			res.json(arreglo);
+			var respuesta = null;
+				if(results.length == 0){
+					respuesta = { "status": "0"};
+				}else{
+					respuesta = { "status": "1"};
+				}
+			
+			res.json(respuesta);
 		}
 	});
 };
 
-app.get("/greetings", mostrarUS);
+app.get("/login", validarUS);
 
 server.listen(2011, function () {
 	console.log("Node server running on http://localhost:2011");
