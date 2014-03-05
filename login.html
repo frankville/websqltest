@@ -12,10 +12,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css"> -->
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
-
+    <link href="stickyfooter.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -27,21 +28,40 @@
   </head>
 
   <body>
-   
-    <div class="container">
+
+    <div id="marco" class="container">
+
+      <div id="encab" class="container">
+         <img id="logo" src="LogoLancaster.png" class="img-responsive">
+          <h3 id="nombre"><strong>Lancaster</strong></h3>
+         <h4 id="subtitulo">Institute of English</h4>
+      </div>
+
+      <div id="loaderContainer" class="container">
+      	<p>unos segundos...el sistema se está iniciando</p>
+      	 <img id="spin" src="loaderbar.gif">
+      </div>
+			
+
           <form id="formulario" class="form-signin form-horizontal" role="form">
-            <h2 class="form-signin-heading">Please sign in</h2>
-             <input id="usuario" type="email" class="form-control" placeholder="Email address" required autofocus>
-            <input id="pass" type="password" class="form-control" placeholder="Password" required>
-            <img id="spin" src="indicator.gif" class="collapse">
-            <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me </label>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <div id="alcahuete" class="alert alert-info">Aca se va a ver si tu info de login es correcta</div>
+            <h4 class="form-signin-heading">Ingresa tus credenciales</h4>
+            <input id="usuario" class="form-control" placeholder="tu nombre de usuario" required autofocus>
+            <input id="pass" type="password" class="form-control" placeholder="tu contraseña" required>
+            <button id="submitBt" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+            <div id="alcahuete" class="alert alert-info collapse">Aca se va a ver si tu info de login es correcta</div>
           </form>
 
     </div> <!-- /container --> 
+    <div id="menu" class="container">
+    	<p> weep! soy el menu! </p>
+    </div>
 
+    
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted text-center"><strong> &copy WorkCloud Systems.</strong> All rights reserved</p>
+      </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript

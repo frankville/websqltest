@@ -1,13 +1,60 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #FFFFFB;
+
+}
+
+#encab {
+  max-height: 20%;
+  max-width: 100%;
+  text-align: center;
+  font-family: "Fondamento","Arial","Helvetica";
+  position: relative;
+}
+
+#footer {
+  background-color: #FFFFFB;
+  border: 2px solid;
+  border-color: rgba(192,192,192,0.5);
+
+}
+
+#loaderContainer {
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+
+#nombre {
+  margin-bottom: -0.5em;
+}
+
+#submitBt{
+    background-color: #CC0000;
+    border-color: #CC0000;
+}
+
+#logo {
+  margin-bottom: -1.5em;
+  max-height: 200px;
+  display: inline;
 }
 
 .form-signin {
+
   max-width: 330px;
+  max-height: 100%;
   padding: 15px;
-  margin: 0 auto;
+  margin: 2em auto;
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: rgba(192,192,192,0.5);
+  box-shadow: 0.3em 0.3em 1em rgba(182,182,182,0.5); 
+  position: relative;
+  text-align: center;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {

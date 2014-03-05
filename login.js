@@ -1,20 +1,28 @@
 // var db = openDatabase("test", "1.0", "BD Prueba", 1024);  // Open SQLite Database
+var sesion = null;
 
 $(document).ready(function(){
-
+	$("#loaderContainer").fadeOut("fast");
 });
 
+
+$("#usuario").keyup(function(){
+	$("#alcahuete").fadeOut("fast");
+});
+$("#pass").keyup(function(){
+	$("#alcahuete").fadeOut("fast");
+});
 $("#formulario").submit(function(event){
 	event.preventDefault();
-	$("#usuario").hide("fast",function(){});
-	$("#pass").hide("fast",function(){});
-	$("#spin").show("fast",function(){});
+	$("#formulario").fadeOut("fast",function () {
+			$("#loaderContainer").fadeIn("fast");
+	});
 
 	verificarUsuario($("#usuario").val(),$("#pass").val(), darRespuesta);
 	/* 
-$("#usuario").show("slow",function(){});
-		$("#pass").show("slow",function(){});
-		$("#spin").fadeOut("slow");
+$("#usuario").show("fast",function(){});
+		$("#pass").show("fast",function(){});
+		$("#spin").fadeOut("fast");
 	*/
 
 });
@@ -45,29 +53,14 @@ var verificarUsuario = function(us,pass,callback){
 			jsonObj: JSON.stringify(sesion)
 		},
 		success: function (data, status, jqXHR) {
-			//var respjson = JSON.parse(data);
-			if(data.status == "ok"){
-				darRespuesta(1);
-			}else{
-				darRespuesta(0);
-			};
+			darRespuesta(data.status);
 		},
 		error: function(xhrequest, ErrorText, thrownError) {
-            alert("eror:  " + thrownError + " : " + ErrorText);
+            mostrarError(thrownError + ": " + ErrorText);
         }
 
 	});
 
-	/*
-	db.transaction(function(t){
-		t.executeSql("SELECT * FROM usuarios where id = ? and pass= ?;",
-			[us,pass],
-			function(t,result){
-				callback(result);
-			}
-		);
-	});
-*/
 };
 
 var algo = function(data) {
@@ -75,27 +68,44 @@ var algo = function(data) {
 };
 
 var darRespuesta = function(result){
-	if(result != 0 ){
+	setTimeout(function(){
+			if(result != 0 ){
+		sesion = 1;
+		$("#loaderContainer").fadeOut("fast",function () {
+			$("#formulario").fadeIn("fast");
+		});
 		$("#alcahuete").text("Exito! tu usuario y password son validos");
 		$("#alcahuete").removeClass("alert-info");
 		$("#alcahuete").removeClass("alert-danger");
+		$("#alcahuete").removeClass("collapse");
 		$("#alcahuete").addClass("alert-success");
 
 	}else{
+		$("#loaderContainer").fadeOut("fast",function () {
+			$("#formulario").fadeIn("fast");
+		});
+		<!--
 		$("#alcahuete").text("Error! tu usuario y password NO son validos");
 		$("#alcahuete").removeClass("alert-info");
 		$("#alcahuete").removeClass("alert-success");
+		$("#alcahuete").removeClass("collapse");
 		$("#alcahuete").addClass("alert-danger");
-		$("#usuario").show("slow",function(){});
-		$("#pass").show("slow",function(){});
-		$("#spin").fadeOut("slow");
+		-->
 	};
+	}, 2000);
+
 };
 
 var mostrarError = function(data){
-	$("#alcahuete").text("Error en http request");
+	setTimeout(function(){
+		$("#loaderContainer").fadeOut("fast",function () {
+			$("#formulario").fadeIn("fast");
+		});
+	$("#alcahuete").text("Error en http request: "+data);
 		$("#alcahuete").removeClass("alert-info");
 		$("#alcahuete").removeClass("alert-success");
+		$("#alcahuete").removeClass("collapse");
 		$("#alcahuete").addClass("alert-danger");
-}
+	}, 2000);
+};
 

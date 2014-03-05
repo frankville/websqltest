@@ -9,7 +9,7 @@ var queryString = require("querystring");
 var cliente = mysql.createConnection({
 	user :"queryuser",
 	password : "undomiel",
-	host :"192.168.0.103",
+	host :"192.168.13.121",
 	port :"3306",
 	database :"lancaster_test"
 });
