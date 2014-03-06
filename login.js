@@ -68,11 +68,10 @@ var algo = function(data) {
 };
 
 var darRespuesta = function(result){
-	setTimeout(function(){
 			if(result != 0 ){
 		sesion = 1;
-		$("#loaderContainer").fadeOut("fast",function () {
-			$("#formulario").fadeIn("fast");
+		$("#marco").fadeOut("fast",function () {
+			$("#menu").fadeIn("fast");
 		});
 		$("#alcahuete").text("Exito! tu usuario y password son validos");
 		$("#alcahuete").removeClass("alert-info");
@@ -92,7 +91,6 @@ var darRespuesta = function(result){
 		$("#alcahuete").addClass("alert-danger");
 		-->
 	};
-	}, 2000);
 
 };
 

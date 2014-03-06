@@ -3,10 +3,6 @@
  */
 
 /* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
-
 
 /*
  * Global add-ons
@@ -16,7 +12,6 @@ body {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
-
 
 /*
  * Sidebar
@@ -53,8 +48,8 @@ body {
   padding-left: 20px;
 }
 .nav-sidebar > .active > a {
-  color: #fff;
-  background-color: #428bca;
+  color: #CC0000;
+  background-color: #CC0000;
 }
 
 
