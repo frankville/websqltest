@@ -4,9 +4,41 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 
-/*
- * Global add-ons
- */
+ 
+iframe {
+  border: 2px solid;
+  border-color: rgba(192,192,192,0.5);
+  border-radius: 0.5em;
+  width: 100%;
+  height: 100%;
+
+  max-height: 480px;
+}
+
+
+#ctrlResumenIngreso {
+  border: 2px solid;
+  border-color: rgba(192,192,192,0.5);
+  border-radius: 0.5em;
+  height: 100%;
+  width: 100%;
+}
+
+#mesInput {
+  margin: 1em 1em; 
+}
+
+#contenido {
+  border: 2px solid;
+  border-color: rgba(192,192,192,0.5);
+  border-radius: 0.5em;
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+
+}
+
+
 
 .sub-header {
   padding-bottom: 10px;
