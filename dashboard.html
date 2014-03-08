@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +12,8 @@
     <!-- Bootstrap core CSS -->
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="bootstrap.min.css">    
-
-        <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="navbar-static-top.css">
     <link rel="stylesheet" href="offcanvas.css">
+    <link rel="stylesheet" href="stickyfooter.css">
     <link href="dashboard.css" rel="stylesheet">
 
 
@@ -55,20 +53,24 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="mainContainer" class="container">
 
       <div class="row row-offcanvas row-offcanvas-left">
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+
+        <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+
+<!--
           <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#">Diario</a></li>
-            <li><a href="#">Listado Deuda</a></li> 
+            <li class="active"><a href="">Home</a></li>
+            <li><a href="">Listado Diario</a></li>
+            <li><a href="">Listado Deuda</a></li> 
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                Ingresos <span class="caret"></span>
                </a>
                <ul class="dropdown-menu">
-                  <li><a id="ingresosDetalle" href="#">Detalle</a></li>
-                  <li><a id="ingresosResumen" href="#">Resumen</a></li>
+                  <li><a id="ingresosDetalle" href="">Detalle</a></li>
+                  <li id="ingresosResumen" ><a href="">Resumen</a></li>
                </ul>
             </li>
             <li class="dropdown">
@@ -76,18 +78,57 @@
                Egresos <span class="caret"></span>
                </a>
                <ul class="dropdown-menu">
-                  <li><a href="#">Detalle</a></li>
-                  <li><a href="#">Resumen</a></li>
+                  <li><a href="">Detalle</a></li>
+                  <li><a href="">Resumen</a></li>
                </ul>
             </li>                
           </ul>
+-->
+             <ul id="menuPpal" class="nav nav-pills nav-stacked">
+            <li class="active"><a >Home</a></li>
+            <li><a >Listado Diario</a></li>
+            <li><a >Listado Deuda</a></li> 
+            <li>
+              <a data-toggle="collapse" data-parent="#menuPpal" href="#ingresoSubmenu">
+               Ingresos <span class="caret"></span>
+               </a>
+               <div id="ingresoSubmenu" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      <ul  class="nav nav-pills nav-stacked" >
+                      <li id="ingresosDetalle"><a  href=""> Detalle</a></li>
+                      <li id="ingresosResumen" ><a  href="">Resumen</a></li>
+                      </ul>
+                  </div>
+                </div>
+            </li>
+            <li >
+              <a data-toggle="collapse" data-parent="#menuPpal" href="#egresoSubmenu">
+               Egresos <span class="caret"></span>
+               </a>
+
+               <div id="egresoSubmenu" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      <ul  class="nav nav-pills nav-stacked" >
+                      <li  id="egresosDetalle" ><a href="" >Detalle</a></li>
+                      <li id="egresosResumen" ><a  href="">Resumen</a></li>
+                      </ul>
+                  </div>
+                </div>
+            </li>      
+          </ul>  
+
+
         </div><!--/span-->
        
-         <div class="col-xs-12 col-sm-9">
+         <div class="col-xs-12 col-sm-8">
+
           <p class="pull-left visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Menu</button>
           </p>
-          <div id="ctrlResumenIngreso" class="col-xs-12 col-sm-9 container">
+
+
+          <div id="ctrlResumenIngreso" class="col-xs-12 col-sm-9 container collapse">
+
            <form class="col-xs-12 col-sm-12 form-inline" role="form">
               <div class="form-group form-inline">
                 <label for="mesInput">Mes de consulta</label>
@@ -97,36 +138,41 @@
           </form>
 
           </div>
-          <div id="ctrlDetalleIngreso" class="col-xs-12 col-sm-9 container">
-           <form class="col-xs-12 col-sm-12 form-inline" role="form">
-              <div class="form-group form-inline">
-                <label for="mesInput">Mes de consulta</label>
-                 <input type="date" class="form-control" id="mesInput">
-             </div>
-                 <button type="submit" class="btn btn-default">Listo</button>
-          </form>
+
+          <div id="ctrlDetalleIngreso" class="col-xs-12 col-sm-9 container collapse">
+
+            <form class="col-xs-12 col-sm-12 form-inline" role="form">
+                <div class="form-group form-inline">
+                  <label for="mesInput">Fecha de la consulta</label>
+                  <input type="date" class="form-control" id="mesInput">
+                </div>
+                <button type="submit" class="btn btn-default">Listo</button>
+            </form>
 
           </div>
 
-         <div id="contenido" class="col-xs-12 col-sm-12 container">
-          
-              <iframe src="http://institutolancaster.com"></iframe>
+          <div id="contenido" class="col-xs-12 col-sm-12 container">
 
-        </div>
+              <div id="homePan" class="jumbotron">
+                <h1>Report Dashboard</h1>
+                 <p>Elegí un informe del menú que quieras ver</p>
+              </div>
+              <iframe id="visor" class="collapse" src="http://institutolancaster.com"></iframe>
+          </div>
 
         </div><!--/span-->
 
-
       </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
 
     </div><!--/.container-->
 
+    <hr>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted text-center"><strong> &copy WorkCloud Systems.</strong> All rights reserved</p>
+      </div>
+    </div>
       
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -134,5 +180,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>  
     <script src="offcanvas.js" ></script>
+    <script src="dashboard.js"></script>
   </body>
 </html>
