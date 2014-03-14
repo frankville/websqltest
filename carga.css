@@ -1,0 +1,27 @@
+body {
+	background-color: #FFFFCC;
+}
+
+input {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+table tbody tr:hover {
+    background-color: #996600;
+    cursor: pointer;
+}
+
+.container {
+	background-color: #CCCC00;
+	border: 2px solid;
+	border-color: rgba(192,192,192,0.5);
+	border-radius: 10px;
+	box-shadow: 1em 1em 1em rgba(192,192,192,0.5);
+	margin: 20px 20px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 20px;
+}
+
